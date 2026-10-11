@@ -265,34 +265,46 @@
 
     <div class="case">
       <div class="case-head">
-        <h3 class="case-title">Oracle-to-Oracle ERP Data Migration</h3>
-        <span class="case-meta">Textilys · 2025</span>
+        <h3 class="case-title">Oracle ERP Data Migration Engine</h3>
+        <span class="case-meta">Built &amp; maintained</span>
       </div>
-      <p class="case-role">Owned end to end — solution design through go-live</p>
+      <p class="case-role">Owned end to end — design, build, and ongoing maintenance</p>
       <div class="stats">
-        <div class="stat"><div class="num">~500</div><div class="label">tables migrated</div></div>
-        <div class="stat"><div class="num">6</div><div class="label">blocking errors resolved</div></div>
-        <div class="stat"><div class="num">3</div><div class="label">run modes built</div></div>
+        <div class="stat"><div class="num">~500</div><div class="label">tables covered</div></div>
+        <div class="stat"><div class="num">2</div><div class="label">modes: check / run</div></div>
+        <div class="stat"><div class="num">0</div><div class="label">hardcoded table lists</div></div>
       </div>
-      <p>Led a complete legacy-to-production Oracle ERP data migration. Built the migration
-      tooling myself — CLI-driven, with full, incremental, and dry-run modes, structured
-      logging, and idempotent re-runs so failed steps could be safely retried without
-      corrupting state.</p>
+      <p>Built a CLI migration engine that reloads a production Oracle schema from a source
+      system across a database link — table by table, dependency-ordered, with a strict
+      read-only pre-check pass before anything is touched.</p>
       <ul>
-        <li>Diagnosed and resolved six distinct categories of blocking Oracle errors during
-        implementation: constraint violations, trigger conflicts, index conflicts, datatype
-        mismatches, and view-target conflicts.</li>
-        <li>Built a schema/data-dictionary analyzer (tables, columns, keys, indexes, triggers,
-        FK relationships) and cross-environment drift-reconciliation reports to validate data
-        integrity before cutover.</li>
-        <li>Coordinated the migration against a live production ERP with zero tolerance for
-        unplanned downtime.</li>
+        <li><strong>Live schema introspection</strong>: reads both sides' table, column, and
+        constraint dictionaries on every run — no hardcoded table or column list to fall out
+        of date as the schema evolves.</li>
+        <li><strong>Dependency-ordered loading</strong>: topologically sorts tables on their
+        foreign-key relationships so parents always load before children, with cycle-breaking
+        for the rare circular reference.</li>
+        <li><strong>Pre-check before touching data</strong>: per-column probes (single
+        aggregate queries) catch oversized values, numeric overflow, and NOT-NULL violations
+        in advance; a table with a real blocking issue is reported and skipped, never
+        partially truncated.</li>
+        <li><strong>Safe per-table reload</strong>: disables child foreign keys, constraints,
+        triggers, and indexes → bulk-loads via direct-path insert → rebuilds indexes in
+        parallel → re-enables constraints with a VALIDATE-first, NOVALIDATE-fallback strategy
+        that reports exactly which ones couldn't be fully revalidated and why.</li>
+        <li><strong>A genuine custom rebuild, not a copy</strong>: one table is deliberately
+        excluded from the direct copy and instead reconstructed after load from a cross-join
+        business rule across two other tables, via an upsert plus a targeted delete that
+        preserves hand-set status columns and only removes combinations that truly no longer
+        exist.</li>
+        <li>CLI supports scoping to specific tables, a read-only dry-run report, and a full
+        log + CSV status report per run.</li>
       </ul>
       <div class="tags">
         <span class="tag">Oracle SQL/PL-SQL</span>
         <span class="tag">Python</span>
         <span class="tag">Data Governance</span>
-        <span class="tag">Cutover Planning</span>
+        <span class="tag">Schema Introspection</span>
       </div>
     </div>
 

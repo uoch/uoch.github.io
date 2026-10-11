@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thameur Chaouch — ERP & Technical Project Delivery</title>
+<meta name="description" content="Portfolio: ERP implementation, data migration, production incident root-causing, BI, and applied AI projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1F4E79;
+    --navy-dark: #15375A;
+    --gray-900: #1a1f29;
+    --gray-700: #3d4654;
+    --gray-500: #6b7280;
+    --gray-300: #d1d5db;
+    --gray-100: #f4f6f8;
+    --bg: #ffffff;
+    --card-bg: #ffffff;
+    --border: #e5e8ec;
+    --accent-bg: #eef3f8;
+    --radius: 10px;
+    --max-w: 880px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --navy: #5B9BD5;
+      --navy-dark: #7FB2E0;
+      --gray-900: #eef1f5;
+      --gray-700: #c7ced9;
+      --gray-500: #9aa4b2;
+      --gray-300: #3a4250;
+      --gray-100: #1c222c;
+      --bg: #11151c;
+      --card-bg: #171d26;
+      --border: #2a313d;
+      --accent-bg: #1a2432;
+    }
+  }
+  :root[data-theme="dark"] {
+    --navy: #5B9BD5;
+    --navy-dark: #7FB2E0;
+    --gray-900: #eef1f5;
+    --gray-700: #c7ced9;
+    --gray-500: #9aa4b2;
+    --gray-300: #3a4250;
+    --gray-100: #1c222c;
+    --bg: #11151c;
+    --card-bg: #171d26;
+    --border: #2a313d;
+    --accent-bg: #1a2432;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--gray-900);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--navy); }
+  .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }
+
+  header.hero {
+    padding: 64px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 38px);
+    font-weight: 800;
+    color: var(--navy);
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+  }
+  .hero .tagline {
+    font-size: 17px;
+    color: var(--gray-700);
+    margin: 0 0 20px;
+    font-weight: 500;
+  }
+  .hero p.lede {
+    font-size: 15.5px;
+    color: var(--gray-700);
+    max-width: 640px;
+    margin: 0 0 22px;
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links a {
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 999px;
+    transition: background .15s;
+  }
+  .links a:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  section { padding: 44px 0; }
+  section + section { border-top: 1px solid var(--border); }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 0 0 6px;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--gray-900);
+  }
+  .section-sub {
+    font-size: 14.5px;
+    color: var(--gray-500);
+    margin: 0 0 28px;
+    max-width: 620px;
+  }
+
+  .case {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px 26px 24px;
+    margin-bottom: 20px;
+  }
+  .case-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .case-title { font-size: 17.5px; font-weight: 700; color: var(--gray-900); margin: 0; }
+  .case-meta { font-size: 12.5px; color: var(--gray-500); font-weight: 600; white-space: nowrap; }
+  .case-role { font-size: 13px; color: var(--navy); font-weight: 600; margin: 0 0 14px; }
+
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0 16px;
+  }
+  .stat {
+    background: var(--accent-bg);
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 108px;
+  }
+  .stat .num { font-size: 19px; font-weight: 800; color: var(--navy); line-height: 1.1; }
+  .stat .label { font-size: 11px; color: var(--gray-500); font-weight: 600; margin-top: 2px; }
+
+  .case p { font-size: 14.5px; color: var(--gray-700); margin: 0 0 10px; }
+  .case ul { margin: 0 0 10px; padding-left: 20px; }
+  .case li { font-size: 14.5px; color: var(--gray-700); margin-bottom: 6px; }
+  .case .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--gray-500);
+    background: var(--gray-100);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 6px;
+  }
+  .case .link-row { margin-top: 14px; }
+  .case .link-row a {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .case .link-row a::after { content: " →"; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .skill-group h4 {
+    font-size: 13px;
+    color: var(--navy);
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+  .skill-group p { font-size: 13.5px; color: var(--gray-700); margin: 0; line-height: 1.6; }
+
+  footer {
+    padding: 36px 0 60px;
+    text-align: center;
+  }
+  footer p { font-size: 13px; color: var(--gray-500); margin: 0 0 14px; }
+
+  @media (max-width: 600px) {
+    header.hero { padding: 44px 0 32px; }
+    section { padding: 32px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Thameur Chaouch</h1>
+    <p class="tagline">ERP Implementation &amp; Technical Project Delivery — with applied AI on the side</p>
+    <p class="lede">I own things end to end: a ~500-table ERP migration, a multi-day production
+    incident root-caused against the live system, a dashboard bug worth 5.4 points of
+    reported performance, and a solo-built AI application running in production. Based in
+    Sfax, Tunisia — open to relocation.</p>
+    <div class="links">
+      <a href="mailto:chaouch.thameurtc61@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/thameur-chaouch" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/uoch" target="_blank" rel="noopener">GitHub</a>
+      <a href="tel:+21693028964">+216 93 028 964</a>
+    </div>
+  </div>
+</header>
+
+<section id="erp">
+  <div class="wrap">
+    <p class="section-label">Core Work</p>
+    <h2 class="section-title">ERP Implementation &amp; Technical Project Delivery</h2>
+    <p class="section-sub">End-to-end ownership of ERP systems in live manufacturing environments — migration, incident response, and the BI layer built on top.</p>
+
+    <div class="case">
+      <div class="case-head">
+        <h3 class="case-title">Oracle-to-Oracle ERP Data Migration</h3>
+        <span class="case-meta">Textilys · 2025</span>
+      </div>
+      <p class="case-role">Owned end to end — solution design through go-live</p>
+      <div class="stats">
+        <div class="stat"><div class="num">~500</div><div class="label">tables migrated</div></div>
+        <div class="stat"><div class="num">6</div><div class="label">blocking errors resolved</div></div>
+        <div class="stat"><div class="num">3</div><div class="label">run modes built</div></div>
+      </div>
+      <p>Led a complete legacy-to-production Oracle ERP data migration. Built the migration
+      tooling myself — CLI-driven, with full, incremental, and dry-run modes, structured
+      logging, and idempotent re-runs so failed steps could be safely retried without
+      corrupting state.</p>
+      <ul>
+        <li>Diagnosed and resolved six distinct categories of blocking Oracle errors during
+        implementation: constraint violations, trigger conflicts, index conflicts, datatype
+        mismatches, and view-target conflicts.</li>
+        <li>Built a schema/data-dictionary analyzer (tables, columns, keys, indexes, triggers,
+        FK relationships) and cross-environment drift-reconciliation reports to validate data
+        integrity before cutover.</li>
+        <li>Coordinated the migration against a live production ERP with zero tolerance for
+        unplanned downtime.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Oracle SQL/PL-SQL</span>
+        <span class="tag">Python</span>
+        <span class="tag">Data Governance</span>
+        <span class="tag">Cutover Planning</span>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <h3 class="case-title">Root-Causing a Multi-Day Production Planning Incident</h3>
+        <span class="case-meta">Textilys · 2026</span>
+      </div>
+      <p class="case-role">Investigation &amp; resolution — live-system verification</p>
+      <p>A planning/scheduling module began producing incorrect results across production
+      sites. Rather than accept a plausible-looking fix, I verified every claim directly
+      against the live system — and found a real discrepancy a "corrected" conclusion had
+      missed, backed by screenshot evidence from the production UI, not just the data layer.</p>
+      <ul>
+        <li>Caught a mix-up between a module's own internal percentage calculation and the
+        actual function feeding the UI tiles users were looking at — two different numbers
+        that looked interchangeable but weren't.</li>
+        <li>Supplied the specific data clue that turned the fix from a plausible-but-arbitrary
+        flag flip into a correct, evidence-backed solution.</li>
+        <li>Executed the approved batch database correction personally when an automated
+        safety control blocked the fix from running automatically — taking ownership rather
+        than letting delivery stall.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Root-Cause Analysis</span>
+        <span class="tag">Oracle SQL</span>
+        <span class="tag">Incident Response</span>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <h3 class="case-title">Catching a 5.4-Point Error in a Live Production Dashboard</h3>
+        <span class="case-meta">Textilys · Metabase · 2026</span>
+      </div>
+      <p class="case-role">Data analysis &amp; BI correction</p>
+      <div class="stats">
+        <div class="stat"><div class="num">54.59%</div><div class="label">reported (wrong)</div></div>
+        <div class="stat"><div class="num">49.18%</div><div class="label">actual (weighted)</div></div>
+        <div class="stat"><div class="num">5.4pt</div><div class="label">gap found</div></div>
+      </div>
+      <p>A site-wide "rendement" (yield) KPI card was computing a simple, unweighted average
+      across production groups — letting one small, high-performing group distort the
+      figure for the entire site.</p>
+      <ul>
+        <li>For one site/date combination, the dashboard reported 54.59% — the actual,
+        correctly weighted figure (by minutes worked) was 49.18%, a 5.4-point gap caused by a
+        single 1,939-minute group running at 100.6% pulling the average up against six much
+        larger groups averaging closer to 47%.</li>
+        <li>Fixed with a weighted aggregation (<code>SUM(value × weight) / SUM(weight)</code>),
+        the same technique already used correctly elsewhere in the same dashboard — so the
+        bug was an inconsistency, not a missing capability.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Metabase</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Data Quality</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ai">
+  <div class="wrap">
+    <p class="section-label">Also Ships AI Products</p>
+    <h2 class="section-title">Applied AI &amp; Computer Vision</h2>
+    <p class="section-sub">Hands-on integration and deployment of AI systems — not research, applied engineering that reaches real users.</p>
+
+    <div class="case">
+      <div class="case-head">
+        <h3 class="case-title">Computer-Vision Defect Inspection — deployed for DE.M.CO</h3>
+        <span class="case-meta">Vizmeral · 2025</span>
+      </div>
+      <p class="case-role">Designed, built, and deployed on edge hardware</p>
+      <p>A hybrid quality-control system combining PaDiM anomaly detection with YOLOv5
+      classification, running on Jetson Nano edge hardware and integrated directly into a
+      live manufacturing environment — built and deployed for DE.M.CO as the client site.</p>
+      <div class="tags">
+        <span class="tag">PaDiM</span>
+        <span class="tag">YOLOv5</span>
+        <span class="tag">Jetson Nano</span>
+        <span class="tag">Edge Deployment</span>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <h3 class="case-title">El Profissor — AI Document Assistant</h3>
+        <span class="case-meta">Solo project · deployed</span>
+      </div>
+      <p class="case-role">Conceived, built, and shipped end to end</p>
+      <p>A document-companion app combining OCR, speech recognition, named-entity
+      extraction, summarization, question-answering, and semantic search, wired to a hosted
+      LLM with streaming responses. Containerized and shipped via CI/CD to a live Hugging
+      Face Space.</p>
+      <ul>
+        <li>OCR (pytesseract) + ASR (Whisper) + NER (BERT) + summarization (BART) + extractive
+        QA (RoBERTa) + embeddings-based semantic search (cosine similarity).</li>
+        <li>Chat module wires a hosted LLM via the Hugging Face Inference API with real
+        streaming responses and temperature/top-p controls.</li>
+        <li>Owned the full lifecycle: architecture, integration, Docker packaging, and CI/CD
+        deployment — solo, single GitHub contributor.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">LLM Integration</span>
+        <span class="tag">NLP</span>
+        <span class="tag">Docker</span>
+        <span class="tag">CI/CD</span>
+      </div>
+      <div class="link-row">
+        <a href="https://github.com/uoch/El_profesor" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="section-label">Toolbox</p>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>ERP &amp; Project Delivery</h4>
+        <p>End-to-end ERP implementation (design, migration, integration, testing, cutover,
+        adoption), Oracle ERP, Odoo ERP, risk &amp; dependency management, Agile/Scrum.</p>
+      </div>
+      <div class="skill-group">
+        <h4>Data &amp; BI</h4>
+        <p>Oracle SQL/PL-SQL, Python (pandas), Metabase, data governance &amp; schema
+        integrity, ETL/migration tooling.</p>
+      </div>
+      <div class="skill-group">
+        <h4>Applied AI</h4>
+        <p>LLM API integration &amp; streaming, NLP (NER, summarization, QA, embeddings),
+        computer vision (YOLOv5, PaDiM), edge deployment.</p>
+      </div>
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <p>Docker, Git, Flask, REST APIs, CI/CD.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Arabic (Native) · French (Fluent) · English (Fluent, C1)</p>
+    <div class="links" style="justify-content:center;">
+      <a href="mailto:chaouch.thameurtc61@gmail.com">chaouch.thameurtc61@gmail.com</a>
+      <a href="https://www.linkedin.com/in/thameur-chaouch" target="_blank" rel="noopener">linkedin.com/in/thameur-chaouch</a>
+      <a href="https://github.com/uoch" target="_blank" rel="noopener">github.com/uoch</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

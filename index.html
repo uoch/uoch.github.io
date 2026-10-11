@@ -362,46 +362,42 @@
 
     <div class="case">
       <div class="case-head">
-        <h3 class="case-title">Oracle ERP Data Migration Engine</h3>
-        <span class="case-meta">Built &amp; maintained</span>
+        <h3 class="case-title">Client ERP Transition — Legacy System to Textilys</h3>
+        <span class="case-meta">End-to-end project</span>
       </div>
-      <p class="case-role">Owned end to end — design, build, and ongoing maintenance</p>
+      <p class="case-role">Ran every phase — functional comparison, dev-team coordination, migration, and on-site training</p>
       <div class="stats">
-        <div class="stat"><div class="num">~500</div><div class="label">tables covered</div></div>
-        <div class="stat"><div class="num">2</div><div class="label">modes: check / run</div></div>
-        <div class="stat"><div class="num">0</div><div class="label">hardcoded table lists</div></div>
+        <div class="stat"><div class="num">6→3</div><div class="label">months, planned vs. delivered</div></div>
+        <div class="stat"><div class="num">~500</div><div class="label">tables migrated</div></div>
+        <div class="stat"><div class="num">3</div><div class="label">phases run in parallel</div></div>
       </div>
-      <p>Built a CLI migration engine that reloads a production Oracle schema from a source
-      system across a database link — table by table, dependency-ordered, with a strict
-      read-only pre-check pass before anything is touched.</p>
+      <p>A client's legacy ERP replaced with Textilys — planned at 6 months, delivered in 3.
+      The compression wasn't a shortcut, it came from collapsing a project that's normally
+      split across separate specialists (a functional analyst, a migration engineer, a
+      trainer) into phases I ran myself or drove directly, so nothing sat waiting on a
+      handoff or someone else's calendar.</p>
       <ul>
-        <li><strong>Live schema introspection</strong>: reads both sides' table, column, and
-        constraint dictionaries on every run — no hardcoded table or column list to fall out
-        of date as the schema evolves.</li>
-        <li><strong>Dependency-ordered loading</strong>: topologically sorts tables on their
-        foreign-key relationships so parents always load before children, with cycle-breaking
-        for the rare circular reference.</li>
-        <li><strong>Pre-check before touching data</strong>: per-column probes (single
-        aggregate queries) catch oversized values, numeric overflow, and NOT-NULL violations
-        in advance; a table with a real blocking issue is reported and skipped, never
-        partially truncated.</li>
-        <li><strong>Safe per-table reload</strong>: disables child foreign keys, constraints,
-        triggers, and indexes → bulk-loads via direct-path insert → rebuilds indexes in
-        parallel → re-enables constraints with a VALIDATE-first, NOVALIDATE-fallback strategy
-        that reports exactly which ones couldn't be fully revalidated and why.</li>
-        <li><strong>A genuine custom rebuild, not a copy</strong>: one table is deliberately
-        excluded from the direct copy and instead reconstructed after load from a cross-join
-        business rule across two other tables, via an upsert plus a targeted delete that
-        preserves hand-set status columns and only removes combinations that truly no longer
-        exist.</li>
-        <li>CLI supports scoping to specific tables, a read-only dry-run report, and a full
-        log + CSV status report per run.</li>
+        <li><strong>Functional comparison first</strong>: mapped Textilys against the
+        client's old ERP feature by feature to find the real functional gaps, before any
+        code moved.</li>
+        <li><strong>Led the dev team through the adaptation</strong>: turned those gaps into
+        specifications and coordinated directly with developers to adapt Textilys to cover
+        what the client actually needed — this was a team effort I drove, not solo work.</li>
+        <li><strong>Built and ran the data migration myself</strong>, in parallel with the
+        dev work rather than after it: a CLI engine that introspects both schemas live (no
+        hardcoded table list), loads tables in dependency order, pre-checks every column for
+        blocking issues before touching data, and reconstructs one table from a business
+        rule instead of copying it directly.</li>
+        <li><strong>Trained every level on-site</strong>: from the director down to floor
+        operators, explaining what changed and why, in terms that matched how each group
+        actually used the old system.</li>
       </ul>
       <div class="tags">
         <span class="tag">Oracle SQL/PL-SQL</span>
         <span class="tag">Python</span>
-        <span class="tag">Data Governance</span>
-        <span class="tag">Schema Introspection</span>
+        <span class="tag">Dev-Team Coordination</span>
+        <span class="tag">Change Management</span>
+        <span class="tag">User Training</span>
       </div>
     </div>
 

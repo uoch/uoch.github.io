@@ -232,6 +232,39 @@
 
     <div class="case">
       <div class="case-head">
+        <h3 class="case-title">Fabric Stock Movement — Full-Stack Reporting Platform</h3>
+        <span class="case-meta">Built &amp; deployed · 2026</span>
+      </div>
+      <p class="case-role">Designed, built, and deployed solo — backend to production rollout</p>
+      <p>Replaced manual, ad-hoc stock lookups with a self-service web report for fabric
+      stock movements: a FastAPI backend reading a pooled, read-only Oracle connection, and
+      a React/Vite frontend letting warehouse and production staff filter by client,
+      reference, and date range.</p>
+      <ul>
+        <li>Shared the report/export logic in one core module reused by both the new web app
+        and an existing legacy Tkinter desktop tool — modernizing the interface without
+        duplicating or rewriting the underlying business logic.</li>
+        <li>Generates richly formatted, multi-sheet Excel exports (openpyxl): a summary sheet
+        with grouped headers and live SUMIF totals, a per-reference/color ledger with a
+        running stock balance, and a flat export — matching the layout teams already used.</li>
+        <li>Added response caching with per-key locking so repeated or concurrent requests for
+        the same report reuse one query instead of hammering the database.</li>
+        <li>Packaged the whole stack as a self-contained Windows service — bundled Python
+        runtime and dependencies for fully offline installation — and deployed it to a
+        legacy, air-gapped server, with install/update/uninstall scripts and automatic
+        startup via a scheduled task.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">React</span>
+        <span class="tag">Oracle</span>
+        <span class="tag">openpyxl</span>
+        <span class="tag">Windows Service Deployment</span>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
         <h3 class="case-title">Oracle-to-Oracle ERP Data Migration</h3>
         <span class="case-meta">Textilys · 2025</span>
       </div>

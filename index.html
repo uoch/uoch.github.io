@@ -253,10 +253,11 @@
   <div class="wrap">
     <h1>Thameur Chaouch</h1>
     <p class="tagline">ERP Implementation &amp; Technical Project Delivery — with applied AI on the side</p>
-    <p class="lede">I own things end to end: a ~500-table ERP migration, a multi-day production
-    incident root-caused against the live system, a dashboard bug worth 5.4 points of
-    reported performance, and a solo-built AI application running in production. Based in
-    Sfax, Tunisia — open to relocation.</p>
+    <p class="lede"><strong>Currently: Product Owner, ERP at Textilys</strong> — a textile-industry ERP
+    platform. I own things end to end: a ~500-table ERP migration delivered in half the
+    planned time, a multi-day production incident root-caused against the live system,
+    a KPI dashboard taken from a stakeholder's wireframe to production, and a solo-built
+    AI application running live. Based in Sfax, Tunisia — open to relocation.</p>
     <div class="links">
       <a href="mailto:chaouch.thameurtc61@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/thameur-chaouch" target="_blank" rel="noopener">LinkedIn</a>
@@ -330,7 +331,7 @@
     <div class="case">
       <div class="case-head">
         <h3 class="case-title">Fabric Stock Movement — Full-Stack Reporting Platform</h3>
-        <span class="case-meta">Built &amp; deployed · 2026</span>
+        <span class="case-meta">Textilys · client deployment · 2026</span>
       </div>
       <p class="case-role">Designed, built, and deployed solo — backend to production rollout</p>
       <p>Replaced manual, ad-hoc stock lookups with a self-service web report for fabric
@@ -363,7 +364,7 @@
     <div class="case">
       <div class="case-head">
         <h3 class="case-title">Client ERP Transition — Legacy System to Textilys</h3>
-        <span class="case-meta">End-to-end project</span>
+        <span class="case-meta">Textilys · client deployment</span>
       </div>
       <p class="case-role">Ran every phase — functional comparison, dev-team coordination, migration, and on-site training</p>
       <div class="stats">
@@ -462,64 +463,36 @@
 
     <div class="case">
       <div class="case-head">
-        <h3 class="case-title">KPI Dashboard v2 — From Stakeholder Wireframe to Approved Architecture</h3>
+        <h3 class="case-title">KPI Dashboard — From Stakeholder Wireframe to a Bug Caught Live</h3>
         <span class="case-meta">Textilys · Metabase · 2026</span>
       </div>
-      <p class="case-role">Requirements gathering → spec → team sign-off</p>
+      <p class="case-role">Requirements gathering → spec → team sign-off → live data quality</p>
       <p>Started from a hand-drawn, 2-page wireframe sketched by stakeholders in a
-      requirements meeting — not a formal spec, just their idea of what the next KPI
-      dashboard should show. Turned it into something a dev team could actually build
-      against.</p>
-      <ul>
-        <li>Translated the wireframe into a structured spec: for every proposed KPI, mapped
-        it against what data already existed and was reusable directly versus what had no
-        source yet — rather than guessing or quietly dropping what didn't fit.</li>
-        <li>Went back to the business to resolve real ambiguity in the sketch itself: one
-        dimension read at first as "chaîne" (production line) turned out, after discussion,
-        to actually mean "Groupe" (team) — the dimension that matched how the business
-        actually organizes its work. Also simplified an originally more complex per-atelier
-        layout down to the four metrics the team actually needed.</li>
-        <li>Took the resulting spec to a team architecture review and got it formally
-        approved — with the KPIs that still had no data source explicitly flagged as open
-        questions, not silently assumed or hidden in the delivery.</li>
-        <li>Built on top of an already-live production KPI pipeline — a scheduled hourly
-        computation job with hundreds of consecutive successful runs — so this wasn't a
-        one-off dashboard, it extended a system already running in production.</li>
-      </ul>
+      requirements meeting. Translated it into a structured spec — mapping every proposed
+      KPI against what data already existed versus what had no source yet, resolving real
+      ambiguity in the sketch with the business directly (one dimension read as "chaîne"
+      turned out to actually mean "Groupe," the team's real unit of work) — and took it to
+      a team architecture review for formal sign-off, open questions flagged rather than
+      hidden.</p>
+      <div class="stats">
+        <div class="stat"><div class="num">54.59%</div><div class="label">reported (wrong)</div></div>
+        <div class="stat"><div class="num">49.18%</div><div class="label">actual (weighted)</div></div>
+        <div class="stat"><div class="num">5.4pt</div><div class="label">gap caught live</div></div>
+      </div>
+      <p>Once live, the same discipline caught a real bug in production: a site-wide
+      "rendement" (yield) KPI card was computing a simple, unweighted average across
+      production groups — letting one small, high-performing group distort the figure for
+      the entire site. For one site/date, the dashboard reported 54.59%; the actual,
+      correctly weighted figure (by minutes worked) was 49.18% — a 5.4-point gap caused by a
+      single 1,939-minute group running at 100.6% pulling the average up against six much
+      larger groups averaging closer to 47%. Fixed with a weighted aggregation
+      (<code>SUM(value × weight) / SUM(weight)</code>), the same technique already used
+      correctly elsewhere in the same dashboard — an inconsistency, not a missing
+      capability.</p>
       <div class="tags">
         <span class="tag">Requirements Gathering</span>
         <span class="tag">Stakeholder Communication</span>
         <span class="tag">Metabase</span>
-        <span class="tag">Technical Specification</span>
-      </div>
-    </div>
-
-    <div class="case">
-      <div class="case-head">
-        <h3 class="case-title">Catching a 5.4-Point Error in a Live Production Dashboard</h3>
-        <span class="case-meta">Textilys · Metabase · 2026</span>
-      </div>
-      <p class="case-role">Data analysis &amp; BI correction</p>
-      <div class="stats">
-        <div class="stat"><div class="num">54.59%</div><div class="label">reported (wrong)</div></div>
-        <div class="stat"><div class="num">49.18%</div><div class="label">actual (weighted)</div></div>
-        <div class="stat"><div class="num">5.4pt</div><div class="label">gap found</div></div>
-      </div>
-      <p>A site-wide "rendement" (yield) KPI card was computing a simple, unweighted average
-      across production groups — letting one small, high-performing group distort the
-      figure for the entire site.</p>
-      <ul>
-        <li>For one site/date combination, the dashboard reported 54.59% — the actual,
-        correctly weighted figure (by minutes worked) was 49.18%, a 5.4-point gap caused by a
-        single 1,939-minute group running at 100.6% pulling the average up against six much
-        larger groups averaging closer to 47%.</li>
-        <li>Fixed with a weighted aggregation (<code>SUM(value × weight) / SUM(weight)</code>),
-        the same technique already used correctly elsewhere in the same dashboard — so the
-        bug was an inconsistency, not a missing capability.</li>
-      </ul>
-      <div class="tags">
-        <span class="tag">Metabase</span>
-        <span class="tag">SQL</span>
         <span class="tag">Data Quality</span>
       </div>
     </div>

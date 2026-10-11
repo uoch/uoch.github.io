@@ -241,6 +241,20 @@
     .flow-branch { grid-template-columns: 1fr; }
   }
 
+  .ai-note {
+    margin-top: 22px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--navy);
+    background: var(--accent-bg);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .ai-note-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--navy); margin-bottom: 6px;
+  }
+  .ai-note p { margin: 0; font-size: 13.5px; color: var(--gray-700); line-height: 1.6; }
+
   @media (max-width: 600px) {
     header.hero { padding: 44px 0 32px; }
     section { padding: 32px 0; }
@@ -321,6 +335,17 @@
       This is the exact process behind the dashboard-bug and planning-incident case studies below —
       both were data issues I traced and fixed myself before they ever became a developer ticket.
     </p>
+
+    <div class="ai-note">
+      <div class="ai-note-label">On AI tools — honestly</div>
+      <p>I use Claude, GPT, and other LLM tools daily — for drafting and reviewing SQL/Python,
+      debugging, structuring specs, and writing documentation. That's not a crutch I'd rather
+      not mention, it's a real part of how one person realistically covers ERP migration,
+      incident response, dashboard design, and documentation at this pace. Knowing how to use
+      these tools well — what to delegate to them and what still needs direct verification
+      against a live system — is a skill, and it's part of what I'd bring to a team, not
+      something separate from it.</p>
+    </div>
   </div>
 </section>
 

@@ -199,6 +199,48 @@
   }
   footer p { font-size: 13px; color: var(--gray-500); margin: 0 0 14px; }
 
+  /* ---- triage flow ---- */
+  .flow { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
+  .flow-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px 0;
+  }
+  .flow-step + .flow-step { border-top: 1px dashed var(--border); }
+  .flow-num {
+    flex: none;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800;
+  }
+  .flow-body h4 { margin: 2px 0 4px; font-size: 15px; font-weight: 700; color: var(--gray-900); }
+  .flow-body p { margin: 0; font-size: 14px; color: var(--gray-700); }
+  .flow-branch {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .flow-branch .branch {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .branch.b-fix { background: var(--accent-bg); }
+  .branch.b-dispatch { background: var(--gray-100); }
+  .branch .branch-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--navy); margin-bottom: 6px;
+  }
+  .branch p { margin: 0; font-size: 13.5px; color: var(--gray-700); }
+  @media (max-width: 600px) {
+    .flow-branch { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 600px) {
     header.hero { padding: 44px 0 32px; }
     section { padding: 32px 0; }
@@ -223,6 +265,61 @@
     </div>
   </div>
 </header>
+
+<section id="how-i-work">
+  <div class="wrap">
+    <p class="section-label">How I Work</p>
+    <h2 class="section-title">My Backlog Triage Process</h2>
+    <p class="section-sub">Most Product Owners relay reports. I verify first — which means most of what
+    lands on developers' plates is already diagnosed, and a lot never reaches them at all.</p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <h4>A demand comes in</h4>
+          <p>A production or business stakeholder reports something wrong — a number that looks off, a
+          process that isn't behaving as expected, a report that doesn't match what they see on the floor.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <h4>I check the database myself, before anything else</h4>
+          <p>Not the dashboard, not the report — the underlying data directly. Most "bugs" turn out to be
+          explainable once you see what the data actually contains, and I'd rather find that out myself
+          than ask a developer to.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <h4>Then I split the problem in two</h4>
+          <p>What happens next depends on what the data actually shows:</p>
+          <div class="flow-branch">
+            <div class="branch b-fix">
+              <div class="branch-label">Data / analysis issue</div>
+              <p>Wrong calculation, bad or missing data, a metric defined incorrectly — I fix it directly
+              myself and report back to the requester. No ticket, no wait, no developer time spent on
+              something that was never a code problem.</p>
+            </div>
+            <div class="branch b-dispatch">
+              <div class="branch-label">Real software issue</div>
+              <p>An actual bug or a genuine feature change — I dispatch it to the dev team, already
+              diagnosed: what's wrong, where, and what the data showed, so the ticket that lands on their
+              desk is specific and actionable, not "something's broken, please look."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--gray-500);margin-top:18px;">
+      This is the exact process behind the dashboard-bug and planning-incident case studies below —
+      both were data issues I traced and fixed myself before they ever became a developer ticket.
+    </p>
+  </div>
+</section>
 
 <section id="erp">
   <div class="wrap">

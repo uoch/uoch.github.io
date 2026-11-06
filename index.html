@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thameur Chaouch — ERP & Technical Project Delivery</title>
+<title>Thameur Chaouch — ERP Product Manager</title>
 <meta name="description" content="Portfolio: ERP implementation, data migration, production incident root-causing, BI, and applied AI projects.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -259,6 +259,11 @@
     header.hero { padding: 44px 0 32px; }
     section { padding: 32px 0; }
   }
+  .timeline { display: grid; gap: 14px; }
+  .timeline-item { display: flex; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; }
+  .timeline-item h4 { font-size: 15px; font-weight: 700; color: var(--gray-900); margin: 0; flex: 1 1 280px; }
+  .timeline-item span { font-size: 12.5px; color: var(--gray-500); font-weight: 600; white-space: nowrap; }
+  .timeline-item p { font-size: 14px; color: var(--gray-700); margin: 0; flex-basis: 100%; }
 </style>
 </head>
 <body>
@@ -266,16 +271,16 @@
 <header class="hero">
   <div class="wrap">
     <h1>Thameur Chaouch</h1>
-    <p class="tagline">ERP Implementation &amp; Technical Project Delivery — with applied AI on the side</p>
-    <p class="lede">I bridge business operations and technical execution — delivering ERP
-    migrations, production incident response, and data-driven tools for manufacturing
-    environments. <strong>Currently Product Owner, ERP at Textilys</strong>, a growing ERP
+    <p class="tagline">ERP Product Manager — Implementation &amp; Project Delivery · Manufacturing · Oracle, Data &amp; KPIs</p>
+    <p class="lede">I lead ERP implementations in manufacturing companies — bringing factory
+    teams, developers and management together, and handling the data myself.
+    <strong>Currently ERP Product Manager at Textilys</strong>, a growing ERP
     vendor for the textile industry whose clients manufacture for internationally
     recognized apparel and sportswear brands — lean enough that one person genuinely owns a
     project end to end. Recent work: a ~500-table ERP migration delivered in half the
     planned time, a production incident root-caused against the live system, a KPI
-    dashboard taken from a stakeholder's wireframe to production, and a solo-built AI
-    application running live. Based in Sfax, Tunisia — open to relocation.</p>
+    dashboard taken from a stakeholder's wireframe to production, and an API preparing
+    goods receipt for a garment retail application. Based in Sfax, Tunisia — open to relocation.</p>
     <div class="links">
       <a href="mailto:chaouch.thameurtc61@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/thameur-chaouch" target="_blank" rel="noopener">LinkedIn</a>
@@ -337,7 +342,8 @@
 
     <p style="font-size:13px;color:var(--gray-500);margin-top:18px;">
       This is the exact process behind the dashboard-bug and planning-incident case studies below —
-      both were data issues I traced and fixed myself before they ever became a developer ticket.
+      both turned out to be data issues, resolved through validated, documented corrections
+      rather than a development ticket.
     </p>
 
     <div class="ai-note">
@@ -361,7 +367,7 @@
         <h3 class="case-title">Fabric Stock Movement — Full-Stack Reporting Platform</h3>
         <span class="case-meta">Textilys · client deployment · 2026</span>
       </div>
-      <p class="case-role">Designed, built, and deployed solo — backend to production rollout</p>
+      <p class="case-role">Owned design, build and deployment — AI-assisted development, results validated against live data</p>
       <p>Replaced manual, ad-hoc stock lookups with a self-service web report for fabric
       stock movements: a FastAPI backend reading a pooled, read-only Oracle connection, and
       a React/Vite frontend letting warehouse and production staff filter by client,
@@ -389,6 +395,35 @@
       </div>
     </div>
 
+    <div class="case" id="case-bl-api">
+      <div class="case-head">
+        <h3 class="case-title">Delivery Note API — Preparing Goods Receipt for a Garment Retail App</h3>
+        <span class="case-meta">Textilys · 2026</span>
+      </div>
+      <p class="case-role">Owned design and deployment — AI-assisted development, coordinated with the retail team</p>
+      <p>A garment brand's retail application needs to know what is arriving from production
+      before stores receive it. I built a small read-only API that gives it each delivery
+      note down to carton, tray and SKU level: reference, colour, size, quantity and barcode
+      (EAN).</p>
+      <ul>
+        <li><strong>Read-only by design</strong>: the API only reads ERP data and cannot
+        change anything in the production system.</li>
+        <li>Follows the same data path as the ERP's existing delivery note screen.</li>
+        <li>Handles two production sites where the same delivery note number can exist on
+        both, by requiring the site on every call.</li>
+        <li>Runs as a Windows service on the internal network, against a legacy Oracle
+        database.</li>
+        <li><strong>Status</strong>: API deployed; EAN data is being completed with the
+        retail team before goods receipt goes live.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">Oracle</span>
+        <span class="tag">System Integration</span>
+        <span class="tag">Stakeholder Coordination</span>
+      </div>
+    </div>
+
     <div class="case" id="case-migration">
       <div class="case-head">
         <h3 class="case-title">Client ERP Transition — Legacy System to Textilys</h3>
@@ -412,8 +447,9 @@
         <li><strong>Led the dev team through the adaptation</strong>: turned those gaps into
         specifications and coordinated directly with developers to adapt Textilys to cover
         what the client actually needed — this was a team effort I drove, not solo work.</li>
-        <li><strong>Built and ran the data migration myself</strong>, in parallel with the
-        dev work rather than after it: a CLI engine that introspects both schemas live (no
+        <li><strong>Owned and ran the data migration</strong>, in parallel with the dev work
+        rather than after it, using AI-assisted development for the tooling and validating
+        the results against the data: a CLI engine that introspects both schemas live (no
         hardcoded table list), loads tables in dependency order, pre-checks every column for
         blocking issues before touching data, and reconstructs one table from a business
         rule instead of copying it directly.</li>
@@ -486,10 +522,7 @@
         that looked interchangeable but weren't.</li>
         <li>Supplied the specific data clue that turned the fix from a plausible-but-arbitrary
         flag flip into a correct, evidence-backed solution.</li>
-        <li>The correction itself was validated against the live data before anything ran;
-        when an automated safety control blocked it from executing through the normal
-        automated path, I ran the same validated correction manually rather than leave it
-        stalled.</li>
+        <li>The correction was validated against the live data before it ran.</li>
       </ul>
       <div class="tags">
         <span class="tag">Root-Cause Analysis</span>
@@ -545,9 +578,9 @@
     <div class="case" id="case-vision">
       <div class="case-head">
         <h3 class="case-title">Computer-Vision Defect Inspection — Prototype for DE.M.CO</h3>
-        <span class="case-meta">Vizmeral · 2025</span>
+        <span class="case-meta">ViZmerald · 2025</span>
       </div>
-      <p class="case-role">ML Engineer &amp; Project Coordinator — technical direction, startup engagement</p>
+      <p class="case-role">Digital Product &amp; Project Lead — technical direction, startup engagement</p>
       <p>A hybrid quality-control prototype combining PaDiM anomaly detection with YOLOv5
       classification, running on Jetson Nano edge hardware — built for DE.M.CO, a startup
       engagement, as a proof-of-concept demonstrating the inspection pipeline. Not a
@@ -591,6 +624,22 @@
   </div>
 </section>
 
+<section id="career">
+  <div class="wrap">
+    <p class="section-label">Career</p>
+    <h2 class="section-title">From the Factory Floor to ERP Delivery</h2>
+    <div class="timeline">
+      <div class="timeline-item"><h4>ERP Product Manager — Textilys</h4><span>01/2026 – Present</span><p>Lead ERP delivery for manufacturing clients: a full client rollout, functional and technical, through to go-live approval.</p></div>
+      <div class="timeline-item"><h4>ERP Functional Product Owner — Textilys</h4><span>07/2025 – 01/2026</span><p>Requirements, user stories and backlog; functional testing that cleared a client rollout for go-live. This is where I learned the database side.</p></div>
+      <div class="timeline-item"><h4>Digital Product &amp; Project Lead (Computer Vision) — ViZmerald</h4><span>01/2025 – 07/2025</span><p>Coordinated a computer-vision quality-inspection prototype between the technical team and business stakeholders.</p></div>
+      <div class="timeline-item"><h4>Full Stack Development, specialized in Machine Learning — Holberton School</h4><span>09/2022 – 07/2024</span><p>Moved from textile engineering towards software and data.</p></div>
+      <div class="timeline-item"><h4>Costing and Pricing Officer — Benetton Group</h4><span>12/2019 – 04/2023</span><p>Industrial costing across cutting, sewing and finishing; price-claim analysis; efficiency projects with subcontractors.</p></div>
+      <div class="timeline-item"><h4>Junior Consultant — Kaizen Institute</h4><span>01/2019 – 08/2019</span><p>Supported lean manufacturing projects led by senior consultants (VSM, 5S).</p></div>
+      <div class="timeline-item"><h4>Engineer's Degree, Textile Sciences &amp; Engineering — ENIM, Monastir</h4><span>2015 – 2018</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="wrap">
     <p class="section-label">Toolbox</p>
@@ -621,7 +670,7 @@
 
 <footer>
   <div class="wrap">
-    <p>Arabic (Native) · French (B2) · English (Fluent, C1)</p>
+    <p>Arabic (Native) · English (Fluent, C1) · French (B2) · Spanish (Elementary)</p>
     <div class="links" style="justify-content:center;">
       <a href="mailto:chaouch.thameurtc61@gmail.com">chaouch.thameurtc61@gmail.com</a>
       <a href="https://www.linkedin.com/in/thameur-chaouch" target="_blank" rel="noopener">linkedin.com/in/thameur-chaouch</a>
